@@ -1,0 +1,26 @@
+funcao a_estrela(mapa, nodo_inicial, nodo_final):
+	lista_aberta = [nodo_inicial]
+	lista_fechada = []
+
+	enquanto houver itens na lista aberta:
+		no_atual = primeiro_item(lista_aberta)
+		
+		se no_atual está na lista fechada:
+			continuar
+		se não se no_atual é igual a nodo_final:
+			retorne montar_caminho(nodo_final)
+		se não:
+			para cada no_vizinho do no_atual:
+				se o no_vizinho não está na lista_fechada:
+					g = funcao_heuristica(no_vizinho, nodo_final)
+					h = funcao_heuristica(no_vizinho, nodo_inicial)
+
+					no_vizinho->f = g + h
+					no_vizinho->pai = no_atual
+
+					adicione(no_vizinho, lista_aberta)
+
+			adicione(no_atual, lista_fechada)
+
+	// Caminho não encontrado!		
+	retorna []
